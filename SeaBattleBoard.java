@@ -161,7 +161,10 @@ public class SeaBattleBoard extends JPanel implements MouseListener {
             image = fireImage;
         }
 
-        g2d.drawImage(image, convertXtoPixels(x, isComputerField) + shift, convertYtoPixels(y, isComputerField) + shift, null);
+        if(g2d != null) {
+            g2d.drawImage(image, convertXtoPixels(x, isComputerField) + shift, convertYtoPixels(y, isComputerField) + shift, null);
+        }
+
     }
 
     public int convertXtoPixels(int x, boolean isComputerField) {

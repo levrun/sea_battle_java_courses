@@ -86,10 +86,13 @@ public class SeaBattle extends JFrame {
     }
 
     public static void main(String[] args) {
-        SeaBattle seaBattle = new SeaBattle();
-        seaBattle.addMenuBar();
-        seaBattle.drawGameField();
-        
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                SeaBattle seaBattle = new SeaBattle();
+                seaBattle.addMenuBar();
+                seaBattle.drawGameField();
+            }
+        });
     }
 
 }
