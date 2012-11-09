@@ -31,6 +31,11 @@ public class SeaBattleBoard extends JPanel implements MouseListener {
     private Image fireImage;
     private Image cellOfFieldImage;
 
+    private Field user;
+    private Field computer;
+
+    private Graphics2D g2d;
+
     private enum CellImage {
         SHIP, MISS, FIRED, KILLED, EMPTY
     }
@@ -61,9 +66,19 @@ public class SeaBattleBoard extends JPanel implements MouseListener {
         addMouseListener(this);
     }
 
-    
-    
-    public void paint(Graphics graphics) {
+
+
+    @Override
+    public void paintComponent(Graphics graphics) {
+        if(graphics != null) {
+            super.paintComponent(graphics);
+            this.g2d = (Graphics2D)graphics;
+
+            if(user != null && computer != null) {
+                printBattleField(user, computer);
+            }
+        }
+
     }
     
     public void drawCoordinateSymbols() {
@@ -80,24 +95,13 @@ public class SeaBattleBoard extends JPanel implements MouseListener {
 
     }
 
-    public void myPaintMethod(int x, int y, CellImage cellImage, boolean isComputer) {
-        paintCell(x, y, cellImage, isComputer);
-        paintCell(x, y, cellImage, isComputer);
-    }
-    
     public void printBattleField(Field user, Field computer) {
+        this.user = user;
+        this.computer = computer;
         printBattleField(user.getFieldMap(), computer.getFieldMap());
+        repaint();
     }
-    
-    public void clearBattleFields() {
-    	Graphics2D g2d = (Graphics2D)getGraphics();
-    	for(int i=0; i < Field.FIELD_COL_SIZE; i++) {
-            for(int j=0; j < Field.FIELD_ROW_SIZE; j++) {
-            	myPaintMethod(i, j, CellImage.EMPTY, false);
-            }
-    	}
-    }
-    
+
     private void printBattleField(Cell[][] userFieldMap, Cell[][] computerFieldMap) {
         this.userFieldMap = userFieldMap;
         this.computerFieldMap = computerFieldMap;
@@ -105,33 +109,33 @@ public class SeaBattleBoard extends JPanel implements MouseListener {
         for(int i=0; i < Field.FIELD_COL_SIZE; i++) {
             for(int j=0; j < Field.FIELD_ROW_SIZE; j++) {
             	
-            	Cell cell = userFieldMap[i][j];
-            	Cell cell2 = computerFieldMap[i][j];
+            	Cell userCell = userFieldMap[i][j];
+            	Cell computerCell = computerFieldMap[i][j];
             	
-            	if(cell.isShip()) {
-                    if(cell.isFired()) {
-                    	myPaintMethod(i, j, CellImage.FIRED, false);
+            	if(userCell.isShip()) {
+                    if(userCell.isFired()) {
+                        paintCell(i, j, CellImage.FIRED, false);
                     } else {
-                    	myPaintMethod(i, j, CellImage.SHIP, false);
+                        paintCell(i, j, CellImage.SHIP, false);
                     }
 
-                } else if(cell.isFired()) {
-                	myPaintMethod(i,j,CellImage.MISS,false);
+                } else if(userCell.isFired()) {
+                    paintCell(i,j,CellImage.MISS,false);
                 } else {
-                	myPaintMethod(i, j, CellImage.EMPTY, false);
+                    paintCell(i, j, CellImage.EMPTY, false);
                 }
 
-                if(cell2.isShip()) {
-                    if(cell2.isFired()) {
-                    	myPaintMethod(i, j, CellImage.FIRED, true);
+                if(computerCell.isShip()) {
+                    if(computerCell.isFired()) {
+                        paintCell(i, j, CellImage.FIRED, true);
                     } else {
-                    	myPaintMethod(i, j, CellImage.SHIP, true);
+                        paintCell(i, j, CellImage.SHIP, true);
                     }
 
-                } else if(cell2.isFired()) {
-                	myPaintMethod(i, j, CellImage.MISS, true);
+                } else if(computerCell.isFired()) {
+                    paintCell(i, j, CellImage.MISS, true);
                 } else {
-                	myPaintMethod(i, j, CellImage.EMPTY, true);
+                    paintCell(i, j, CellImage.EMPTY, true);
                 }
                 // TODO в любом случае для поля противника печатаем пустую ячейку так как "туман войны"
                 // myPaintMethod(i, j, CellImage.EMPTY, true);
@@ -156,7 +160,7 @@ public class SeaBattleBoard extends JPanel implements MouseListener {
         } else if(cell.equals(CellImage.FIRED)){
             image = fireImage;
         }
-        Graphics2D g2d = (Graphics2D)getGraphics();
+
         g2d.drawImage(image, convertXtoPixels(x, isComputerField) + shift, convertYtoPixels(y, isComputerField) + shift, null);
     }
 
@@ -225,9 +229,9 @@ public class SeaBattleBoard extends JPanel implements MouseListener {
             // TODO добавить проверку что в это поле уже стреляли
 
             Cell cell = computerFieldMap[convertPixelsToX(event.getX())][convertPixelsToY(event.getY())];
+            cell.setWasFired();
             if(cell.isShip()) {
                 System.out.println("ЭТО КОРАБЛЬ!");
-                cell.setWasFired();
                 paintCell(convertPixelsToX(event.getX()), convertPixelsToY(event.getY()), CellImage.FIRED, isPixelsFromComputerField(event.getX()));
                 // TODO добавить проверку что корабль убит
             } else {
