@@ -39,8 +39,6 @@ public class SeaBattle extends JFrame {
     }
     
     private void addMenuBar() {
-
-    	board.setBackground(java.awt.Color.WHITE);
         JMenuBar menuBar = new JMenuBar();
         JMenu menuFile = new JMenu("Файл");
         JMenu menuHelp = new JMenu("Справка");
