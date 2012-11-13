@@ -6,9 +6,12 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 
+/**
+ * Учебный пример для изучения языка программирования Java
+ */
 public class SeaBattle extends JFrame {
 
-	private SeaBattleBoard board;
+    private SeaBattleBoard board;
 
     public SeaBattle() {
         board = new SeaBattleBoard(this);
