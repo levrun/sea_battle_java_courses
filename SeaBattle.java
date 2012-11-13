@@ -8,15 +8,7 @@ import javax.swing.*;
 
 public class SeaBattle extends JFrame {
 
-	/**
-	 * 	1.	На основе Swing программы с меню(ваша заготовка) +
-	 * 		моего примера из шапки, а также консольной программы,
-	 * 		которая расставляет корабли в случайном порядке 
-	 * 		создать Swing программу, которая расставляет корабли в случайном порядке. done
-	 *	2.	Добавить элемент меню “clear”, который очищает доску.
-	 *	3.	Добавить элемент меню “start”, который создаст корабли на доске.
-	 */
-    private SeaBattleBoard board;
+	private SeaBattleBoard board;
 
     public SeaBattle() {
         board = new SeaBattleBoard(this);
