@@ -10,26 +10,51 @@ import javax.swing.*;
 
 public class SeaBattleSwing extends JFrame {
 
-    private SeaBattleBoard board;
+    private SwingField playerField;
+    private SwingField computerField;
+
+    private Field playerFieldMap;
+    private Field computerFieldMap;
 
     public SeaBattleSwing() {
-        board = new SeaBattleBoard(this);
-        add(board);
-        setTitle("SeaBattleSwing");
+        setTitle("Sea Battle, Swing version");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(850, 450);
+        setSize(SwingField.WIDTH * 2 + 37, SwingField.HEIGHT + 68);
+
+        playerField =  new SwingField(true, this);
+        computerField = new SwingField(false, this);
+
+        add(playerField);
+        add(computerField);
+
+        playerField.setLocation(10, 10);
+        computerField.setLocation(SwingField.WIDTH + 20, 10);
+
+        setLayout(null);
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
     }
 
+    public Field getPlayerFieldMap() {
+        return playerFieldMap;
+    }
+
+    public SwingField getPlayerField() {
+        return playerField;
+    }
+
     public void drawGameField() {
-        Field userFieldMap = new Field();
-        userFieldMap.regenerateForGame();
-        Field computerFieldMap = new Field();
+        playerFieldMap = new Field();
+        playerFieldMap.regenerateForGame();
+
+        computerFieldMap = new Field();
         computerFieldMap.regenerateForGame();
-        board.printBattleField(userFieldMap, computerFieldMap);
-        board.drawCoordinateSymbols();
+
+        playerField.setField(playerFieldMap);
+        computerField.setField(computerFieldMap);
+
+        playerField.printField();
     }
 
     public void addMenuBar() {
@@ -75,7 +100,6 @@ public class SeaBattleSwing extends JFrame {
         menuBar.add(menuFile);
         menuBar.add(menuHelp);
         
-        setContentPane(board);
         setJMenuBar(menuBar);
     }
 

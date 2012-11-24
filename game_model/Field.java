@@ -10,6 +10,14 @@ public class Field {
     public static final int FIELD_COL_SIZE = 10;
 
     private Cell[][] field = new Cell[FIELD_ROW_SIZE][FIELD_COL_SIZE];
+    public static final int BATTLE_SHIPS_COUNT = 1;
+    public static final int DESTROYERS_COUNT = 2;
+    public static final int CRUISERS_COUNT = 3;
+    public static final int BOATS_COUNT = 4;
+    public static final int ALL_SHIPS_CELLS_COUNT = BOATS_COUNT*Ship.PATROL_BOAT_SIZE +
+                                                    CRUISERS_COUNT*Ship.CRUISER_SIZE +
+                                                    DESTROYERS_COUNT*Ship.DESTROYER_SIZE +
+                                                    BATTLE_SHIPS_COUNT*Ship.BATTLESHIP_SIZE;
 
     public void regenerateForGame() {
 
@@ -81,16 +89,16 @@ public class Field {
      	}
 		
 		/**
-     	* Добавление однопалубного корабля кораблей 
+     	* Добавление однопалубных кораблей
      	*/
      	public void addBoats() {
-     		int iteration=0;
-            while(iteration<=3) {
+     		int iteration = 0;
+            while(iteration < BOATS_COUNT) {
 				int x = getRandomCoordinate();
 				int y = getRandomCoordinate();
 				if(!shipInPlace(x,y,0, Ship.PATROL_BOAT_SIZE)) {
-            	addPatrolBoat(x,y);
-            	iteration++;
+                    addPatrolBoat(x,y);
+                    iteration++;
 				}
             }
         }
@@ -99,8 +107,8 @@ public class Field {
      	* Добавление двухпалубного корабля кораблей 
      	*/
      	public void addCruisers() {
-     		int iteration=0;
-            while(iteration<=2) {
+     		int iteration = 0;
+            while(iteration < CRUISERS_COUNT) {
 				int x = getRandomCoordinate();
 				int y = getRandomCoordinate();
 				int rotation = rotationShipGenerate();
@@ -118,8 +126,8 @@ public class Field {
      	* Добавление трехпалубного корабля кораблей 
      	*/
      	public void addDestroyers() {
-     		int iteration=0;
-            while(iteration<=1) {
+     		int iteration = 0;
+            while(iteration < DESTROYERS_COUNT) {
 				int x = getRandomCoordinate();
 				int y = getRandomCoordinate();
 				int rotation = rotationShipGenerate();
@@ -129,8 +137,8 @@ public class Field {
 				int y2 = calculateYCoordinate(x1,y1,rotation);
 				if ((x1!=10)&(y1!=10)&(x2!=10)&(y2!=10))
 					if(!shipInPlace(x,y,rotation,Ship.DESTROYER_SIZE)) {
-					addDestroyer(x,y,x1,y1,x2,y2);
-					iteration++;
+                        addDestroyer(x,y,x1,y1,x2,y2);
+                        iteration++;
 					}
             }
         }
@@ -138,8 +146,8 @@ public class Field {
      	* Добавление четырехпалубного корабля кораблей 
      	*/
      	public void addBattleship() {
-     		int iteration=0;
-            while(iteration<=0) {
+     		int iteration = 0;
+            while(iteration < BATTLE_SHIPS_COUNT) {
 				int x = getRandomCoordinate();
 				int y = getRandomCoordinate();
 				int rotation = rotationShipGenerate();
@@ -151,8 +159,8 @@ public class Field {
 				int y3 = calculateYCoordinate(x2,y2,rotation);
 				if ((x1!=10)&(y1!=10)&(x2!=10)&(y2!=10)&(x3!=10)&(y3!=10))
 					if(!shipInPlace(x,y,rotation,Ship.BATTLESHIP_SIZE)) {
-					addBattleship(x,y,x1,y1,x2,y2,x3,y3);
-					iteration++;
+                        addBattleship(x,y,x1,y1,x2,y2,x3,y3);
+                        iteration++;
 					}
             }
         }
