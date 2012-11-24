@@ -1,4 +1,4 @@
-package sea_battle_java_courses;
+package sea_battle_java_courses.game_model;
 
 import java.util.Random;
 
@@ -88,7 +88,7 @@ public class Field {
             while(iteration<=3) {
 				int x = getRandomCoordinate();
 				int y = getRandomCoordinate();
-				if(!shipInPlace(x,y,0,Ship.PATROL_BOAT_SIZE)) {
+				if(!shipInPlace(x,y,0, Ship.PATROL_BOAT_SIZE)) {
             	addPatrolBoat(x,y);
             	iteration++;
 				}

@@ -1,4 +1,4 @@
-package sea_battle_java_courses;
+package sea_battle_java_courses.swing;
 
 import javax.swing.*;
 import java.awt.*;

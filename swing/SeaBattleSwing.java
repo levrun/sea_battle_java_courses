@@ -1,4 +1,6 @@
-package sea_battle_java_courses;
+package sea_battle_java_courses.swing;
+
+import sea_battle_java_courses.game_model.Field;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,17 +8,14 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 
-/**
- * Учебный пример для изучения языка программирования Java
- */
-public class SeaBattle extends JFrame {
+public class SeaBattleSwing extends JFrame {
 
     private SeaBattleBoard board;
 
-    public SeaBattle() {
+    public SeaBattleSwing() {
         board = new SeaBattleBoard(this);
         add(board);
-        setTitle("SeaBattle");
+        setTitle("SeaBattleSwing");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(850, 450);
         setLocationRelativeTo(null);
@@ -24,7 +23,7 @@ public class SeaBattle extends JFrame {
         setResizable(false);
     }
 
-    private void drawGameField() {
+    public void drawGameField() {
         Field userFieldMap = new Field();
         userFieldMap.regenerateForGame();
         Field computerFieldMap = new Field();
@@ -32,8 +31,8 @@ public class SeaBattle extends JFrame {
         board.printBattleField(userFieldMap, computerFieldMap);
         board.drawCoordinateSymbols();
     }
-    
-    private void addMenuBar() {
+
+    public void addMenuBar() {
         JMenuBar menuBar = new JMenuBar();
         JMenu menuFile = new JMenu("Файл");
         JMenu menuHelp = new JMenu("Справка");
@@ -78,16 +77,6 @@ public class SeaBattle extends JFrame {
         
         setContentPane(board);
         setJMenuBar(menuBar);
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                SeaBattle seaBattle = new SeaBattle();
-                seaBattle.addMenuBar();
-                seaBattle.drawGameField();
-            }
-        });
     }
 
 }

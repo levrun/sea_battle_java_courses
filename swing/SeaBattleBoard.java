@@ -1,14 +1,15 @@
-package sea_battle_java_courses;
+package sea_battle_java_courses.swing;
+
+import sea_battle_java_courses.game_model.Cell;
+import sea_battle_java_courses.game_model.Field;
 
 import java.awt.*;
 
 import javax.swing.*;
 
 import java.awt.Image;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Random;
 
 public class SeaBattleBoard extends JPanel implements MouseListener {
     private JFrame frame;

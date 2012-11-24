@@ -1,4 +1,6 @@
-package sea_battle_java_courses;
+package sea_battle_java_courses.game_model;
+
+import sea_battle_java_courses.game_model.Cell;
 
 /**
  * Прототип корабля
