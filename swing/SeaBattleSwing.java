@@ -46,10 +46,8 @@ public class SeaBattleSwing extends JFrame {
 
     public void drawGameField() {
         playerFieldMap = new Field();
-        playerFieldMap.regenerateForGame();
 
         computerFieldMap = new Field();
-        computerFieldMap.regenerateForGame();
 
         playerField.setField(playerFieldMap);
         computerField.setField(computerFieldMap);

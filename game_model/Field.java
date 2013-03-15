@@ -19,7 +19,11 @@ public class Field {
                                                     DESTROYERS_COUNT*Ship.DESTROYER_SIZE +
                                                     BATTLE_SHIPS_COUNT*Ship.BATTLESHIP_SIZE;
 
-    public void regenerateForGame() {
+    public Field() {
+        regenerateForGame();
+    }
+
+    private void regenerateForGame() {
 
         // заполним поле пустыми ячейками
         for(int i = 0; i < FIELD_COL_SIZE; i++) {
