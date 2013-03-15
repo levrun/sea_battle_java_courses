@@ -1,7 +1,7 @@
-package sea_battle_java_courses.swing;
+package sea_battle_java_courses.swing_logic;
 
-import sea_battle_java_courses.game_model.Cell;
-import sea_battle_java_courses.game_model.Field;
+import sea_battle_java_courses.game_logic.Cell;
+import sea_battle_java_courses.game_logic.Field;
 
 import javax.swing.*;
 import java.awt.*;

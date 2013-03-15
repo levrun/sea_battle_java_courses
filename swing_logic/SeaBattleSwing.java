@@ -1,6 +1,6 @@
-package sea_battle_java_courses.swing;
+package sea_battle_java_courses.swing_logic;
 
-import sea_battle_java_courses.game_model.Field;
+import sea_battle_java_courses.game_logic.Field;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

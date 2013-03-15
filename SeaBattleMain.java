@@ -1,6 +1,6 @@
 package sea_battle_java_courses;
 
-import sea_battle_java_courses.swing.SeaBattleSwing;
+import sea_battle_java_courses.swing_logic.SeaBattleSwing;
 
 import javax.swing.*;
 
