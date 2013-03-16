@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 public class SeaBattle {
 
-    public static final int PAUSE_MILLISECONDS = 500;
+    public static final int PAUSE_MILLISECONDS = 5;
 
     private Field playerFieldMap;
     private Field computerFieldMap;
@@ -143,7 +143,6 @@ public class SeaBattle {
 
     public boolean checkWin(Cell[][] map) {
         int firedShips = 0;
-        boolean firedCellsExist = false;
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 Cell cell = map[i][j];
@@ -152,13 +151,11 @@ public class SeaBattle {
                     if (firedShips == Field.ALL_SHIPS_CELLS_COUNT) {
                         return true;
                     }
-                } else if (!cell.isFired()) {
-                    firedCellsExist = true;
                 }
             }
         }
 
-        return !firedCellsExist;
+        return false;
     }
 
 
