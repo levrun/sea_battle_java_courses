@@ -18,7 +18,9 @@ public class SeaBattleMain {
                 SeaBattleSwing seaBattle = new SeaBattleSwing();
                 seaBattle.addMenuBar();
                 seaBattle.drawGameField(game.getPlayerField(), game.getComputerField());
-                game.seaBattleSwing = seaBattle;
+                game.setSeaBattleSwing(seaBattle);
+
+                // TODO по максимуму разделить игровую логику и Swing
             }
         });
 

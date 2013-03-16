@@ -14,7 +14,7 @@ public class SeaBattle {
     private Field playerFieldMap;
     private Field computerFieldMap;
 
-    public SeaBattleSwing seaBattleSwing;
+    private SeaBattleSwing seaBattleSwing;
 
     public static boolean userMakeShooting;
     public static boolean userKilledSomeone;
@@ -22,6 +22,14 @@ public class SeaBattle {
     public SeaBattle() {
         playerFieldMap = new Field();
         computerFieldMap = new Field();
+    }
+
+    public void setSeaBattleSwing(SeaBattleSwing seaBattleSwing) {
+        this.seaBattleSwing = seaBattleSwing;
+    }
+
+    public SeaBattleSwing getSeaBattleSwing() {
+        return seaBattleSwing;
     }
 
     public Field getPlayerField() {
