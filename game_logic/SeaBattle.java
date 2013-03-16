@@ -36,7 +36,7 @@ public class SeaBattle {
         boolean userWin = false;
         boolean computerWin = false;
 
-        while (!userWin && !computerWin) {
+        do {
             userShoot = false;
             waitUserAttack();
 
@@ -60,7 +60,7 @@ public class SeaBattle {
 
             computerWin = checkWin(playerFieldMap.getFieldMap());
 
-        }
+        } while(!userWin && !computerWin);
 
         if (computerWin) {
             showWinMessageBox("Вы проиграли", false);
