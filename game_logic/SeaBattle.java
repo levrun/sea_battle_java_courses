@@ -16,7 +16,7 @@ public class SeaBattle {
 
     public SeaBattleSwing seaBattle;
 
-    public static boolean userShoot;
+    public static boolean userMakeShooting;
     public static boolean userKilledSomeone;
 
     public SeaBattle() {
@@ -37,7 +37,7 @@ public class SeaBattle {
         boolean computerWin = false;
 
         do {
-            userShoot = false;
+            userMakeShooting = false;
             waitUserAttack();
 
             userWin = checkWin(computerFieldMap.getFieldMap());
@@ -130,7 +130,7 @@ public class SeaBattle {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        } while (!userShoot);
+        } while (!userMakeShooting);
     }
 
     public boolean checkWin(Cell[][] map) {

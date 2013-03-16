@@ -1,10 +1,8 @@
 package sea_battle_java_courses.swing_logic;
 
 import sea_battle_java_courses.game_logic.Cell;
-import sea_battle_java_courses.game_logic.Field;
 import sea_battle_java_courses.game_logic.SeaBattle;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -126,7 +124,7 @@ public class Sector extends Component implements MouseListener {
             }
 
             repaint();
-            SeaBattle.userShoot = true;
+            SeaBattle.userMakeShooting = true;
         }
     }
 
