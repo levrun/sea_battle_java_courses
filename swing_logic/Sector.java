@@ -28,10 +28,9 @@ public class Sector extends Component implements MouseListener {
         this.field = field;
         this.field.add(this);
         setSize(WIDTH, HEIGHT);
-        setLocation(SwingField.HEADER_ZONE + SwingField.SPACE_BETWEEN * 2 +
-                (WIDTH + SwingField.SPACE_BETWEEN) * axisX,
-                SwingField.HEADER_ZONE + SwingField.SPACE_BETWEEN * 2 +
-                        (HEIGHT + SwingField.SPACE_BETWEEN) * axisY);
+        setLocation(SwingField.HEADER_ZONE + SwingField.SPACE_BETWEEN * 2 +(WIDTH + SwingField.SPACE_BETWEEN) * axisX,
+                SwingField.HEADER_ZONE + SwingField.SPACE_BETWEEN * 2 + (HEIGHT + SwingField.SPACE_BETWEEN) * axisY);
+
         addMouseListener(this);
     }
 
@@ -113,6 +112,7 @@ public class Sector extends Component implements MouseListener {
                 setAttacked();
             }
 
+            // TODO предположительно этот код нужно вынести в основную логику игры
             Cell[][] cells = field.getField().getFieldMap();
             Cell cell = cells[axisX][axisY];
             cell.setWasFired();
