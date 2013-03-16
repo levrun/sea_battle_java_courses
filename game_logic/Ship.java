@@ -12,4 +12,14 @@ public class Ship {
 
     protected Cell[] cells;
 
+    public boolean shipIsDead() {
+        for(Cell cell : cells) {
+            if(!cell.isFired()) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 }

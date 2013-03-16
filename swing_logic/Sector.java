@@ -53,9 +53,12 @@ public class Sector extends Component implements MouseListener {
         Graphics2D g2d = (Graphics2D)g;
 
         if(field.isOpen()) {
-            if(isShip && isAttacked) {
+            Cell cell = field.getField().getFieldMap()[axisX][axisY];
+            if(isShip() && cell.getShip().shipIsDead()) {
+                draw(g2d, Color.gray);
+            } else if(isShip() && isAttacked) {
                 draw(g2d, Color.red);
-            } else if(isShip){
+            } else if(isShip()){
                 draw(g2d, Color.black);
             } else if(isAttacked) {
                 draw(g2d, Color.blue);
@@ -66,7 +69,10 @@ public class Sector extends Component implements MouseListener {
             if(isSelected) {
                 draw(g2d, Color.green);
             } else if(isAttacked ){
-                if(isShip()) {
+                Cell cell = field.getField().getFieldMap()[axisX][axisY];
+                if(isShip() && cell.getShip().shipIsDead()) {
+                    draw(g2d, Color.gray);
+                } else if(isShip()) {
                     draw(g2d, Color.red);
                 } else {
                     draw(g2d, Color.blue);

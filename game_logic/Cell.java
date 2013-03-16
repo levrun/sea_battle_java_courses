@@ -14,6 +14,10 @@ public class Cell {
         this.ship = ship;
     }
 
+    public Ship getShip() {
+        return ship;
+    }
+
     public void setWasFired() {
         this.wasFired = true;
     }
