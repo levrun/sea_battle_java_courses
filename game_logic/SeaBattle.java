@@ -14,7 +14,7 @@ public class SeaBattle {
     private Field playerFieldMap;
     private Field computerFieldMap;
 
-    public SeaBattleSwing seaBattle;
+    public SeaBattleSwing seaBattleSwing;
 
     public static boolean userMakeShooting;
     public static boolean userKilledSomeone;
@@ -74,7 +74,7 @@ public class SeaBattle {
         int x = Field.getRandomCoordinate();
         int y = Field.getRandomCoordinate();
 
-        SwingField playerSwingField = seaBattle.getPlayerField();
+        SwingField playerSwingField = seaBattleSwing.getPlayerField();
         Sector sector = playerSwingField.getSectors()[x][y];
 
         Cell[][] cells = playerFieldMap.getFieldMap();
@@ -100,16 +100,16 @@ public class SeaBattle {
 
     private void showWinMessageBox(String message, boolean userWin) {
         if (userWin) {
-            seaBattle.getComputerField().setGameEnd();
-            seaBattle.getComputerField().repaint();
+            seaBattleSwing.getComputerField().setGameEnd();
+            seaBattleSwing.getComputerField().repaint();
         } else {
-            SwingField playerSwingField = seaBattle.getPlayerField();
+            SwingField playerSwingField = seaBattleSwing.getPlayerField();
             playerSwingField.setGameEnd();
             playerSwingField.repaint();
         }
 
         Object[] options = {"Да", "Нет"};
-        int result = JOptionPane.showOptionDialog(seaBattle.getComputerField().getParent(), "Хотите сыграть еще раз ?", message,
+        int result = JOptionPane.showOptionDialog(seaBattleSwing.getComputerField().getParent(), "Хотите сыграть еще раз ?", message,
                 JOptionPane.YES_NO_CANCEL_OPTION,
                 JOptionPane.QUESTION_MESSAGE,
                 null,
