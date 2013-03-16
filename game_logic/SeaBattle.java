@@ -9,6 +9,8 @@ import java.util.concurrent.TimeUnit;
 
 public class SeaBattle {
 
+    public static final int PAUSE_MILLISECONDS = 500;
+
     private Field playerFieldMap;
     private Field computerFieldMap;
 
@@ -50,7 +52,7 @@ public class SeaBattle {
 
             while (computerAttack()) {
                 try {
-                    TimeUnit.MILLISECONDS.sleep(5);
+                    TimeUnit.MILLISECONDS.sleep(PAUSE_MILLISECONDS);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -124,7 +126,7 @@ public class SeaBattle {
     public static void waitUserAttack() {
         do {
             try {
-                TimeUnit.MILLISECONDS.sleep(5);
+                TimeUnit.MILLISECONDS.sleep(PAUSE_MILLISECONDS);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
