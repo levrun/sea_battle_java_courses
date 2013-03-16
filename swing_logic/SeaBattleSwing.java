@@ -13,9 +13,6 @@ public class SeaBattleSwing extends JFrame {
     private SwingField playerField;
     private SwingField computerField;
 
-    private Field playerFieldMap;
-    private Field computerFieldMap;
-
     public SeaBattleSwing() {
         setTitle("Sea Battle, Swing version");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -36,19 +33,15 @@ public class SeaBattleSwing extends JFrame {
         setResizable(false);
     }
 
-    public Field getPlayerFieldMap() {
-        return playerFieldMap;
-    }
-
     public SwingField getPlayerField() {
         return playerField;
     }
 
-    public void drawGameField() {
-        playerFieldMap = new Field();
+    public SwingField getComputerField() {
+        return computerField;
+    }
 
-        computerFieldMap = new Field();
-
+    public void drawGameField(Field playerFieldMap, Field computerFieldMap) {
         playerField.setField(playerFieldMap);
         computerField.setField(computerFieldMap);
 
@@ -76,7 +69,7 @@ public class SeaBattleSwing extends JFrame {
         eMenuFileItemRestartGame.setToolTipText("Перезапуск игры");
         eMenuFileItemRestartGame.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                drawGameField();
+                // TODO drawGameField();
             }
 
         });

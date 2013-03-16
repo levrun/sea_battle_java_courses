@@ -2,6 +2,7 @@ package sea_battle_java_courses.swing_logic;
 
 import sea_battle_java_courses.game_logic.Cell;
 import sea_battle_java_courses.game_logic.Field;
+import sea_battle_java_courses.game_logic.SeaBattle;
 
 import javax.swing.*;
 import java.awt.*;
@@ -109,105 +110,28 @@ public class Sector extends Component implements MouseListener {
 
     public void mouseClicked(MouseEvent e) {
         if(!field.isOpen()) {
-            userAttack();
-            computerAttack();
-        }
-    }
 
-    public boolean checkWin(Cell[][] map) {
-        int firedShips = 0;
-        boolean firedCellsExist = false;
-        for(int i = 0; i < 10; i++) {
-            for(int j = 0; j < 10; j++) {
-                Cell cell = map[i][j];
-                if(cell.isShip() && cell.isFired()) {
-                    firedShips++;
-                    if(firedShips == Field.ALL_SHIPS_CELLS_COUNT) {
-                        return true;
-                    }
-                } else if(!cell.isFired()) {
-                    firedCellsExist = true;
-                }
-            }
-        }
-
-        return !firedCellsExist;
-    }
-
-    private void computerAttack() {
-        int x = Field.getRandomCoordinate();
-        int y = Field.getRandomCoordinate();
-
-        SwingField playerSwingField = field.getGame().getPlayerField();
-        Field playerField = playerSwingField.getField();
-
-        Cell[][] cells = playerField.getFieldMap();
-        Cell cell = cells[x][y];
-
-        while (cell.isFired()) {
-            x = Field.getRandomCoordinate();
-            y = Field.getRandomCoordinate();
-            cell = cells[x][y];
-        }
-
-        cell.setWasFired();
-        playerSwingField.getSectors()[x][y].setAttacked();
-        playerSwingField.printField();
-        playerSwingField.getSectors()[x][y].repaint();
-
-        showWinMessageBox(cells, "Вы проиграли", false);
-    }
-
-    public void setAttacked() {
-        this.isAttacked = true;
-    }
-
-    private void showWinMessageBox(Cell[][] cells, String message, boolean userWin) {
-        if(checkWin(cells)) {
-            if(userWin) {
-                field.setGameEnd();
-                field.repaint();
-            } else {
-                SwingField playerSwingField = field.getGame().getPlayerField();
-                playerSwingField.setGameEnd();
-                playerSwingField.repaint();
+            if(!isAttacked) {
+                setAttacked();
             }
 
-            Object[] options = {"Да", "Нет"};
-            int result = JOptionPane.showOptionDialog(field.getParent(), "Хотите сыграть еще раз ?", message,
-                    JOptionPane.YES_NO_CANCEL_OPTION,
-                    JOptionPane.QUESTION_MESSAGE,
-                    null,
-                    options,
-                    options[1]);
-
-            if(result == 0) {
-                // TODO Перезапуск игры
-                System.out.println("TODO Перезапуск игры");
-            }
-        }
-    }
-
-    private void userAttack() {
-        if(!isAttacked) {
             Cell[][] cells = field.getField().getFieldMap();
             Cell cell = cells[axisX][axisY];
             cell.setWasFired();
 
-            isAttacked = true;
             field.setSelected(null);
-            if(cell.isShip()) {
+            if (cell.isShip()) {
                 setShip();
+                SeaBattle.userKilledSomeone = true;
             }
 
-            showWinMessageBox(cells, "Вы выиграли", true);
-
-            // TODO проверить если корабль убит то выделять его серым
-
-            // TODO вынести логику игры в другой пакет
-
-            // TODO выделить шаблон проектирования Observer + MVC
+            repaint();
+            SeaBattle.userShoot = true;
         }
+    }
+
+    public void setAttacked() {
+        this.isAttacked = true;
     }
 
     public void mousePressed(MouseEvent e) { }
