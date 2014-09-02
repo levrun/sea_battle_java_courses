@@ -5,7 +5,6 @@ package sea_battle_java_courses.game_logic;
  */
 // TODO вплотную коммент и класс
 public class Destroyer extends Ship {
-
 	Destroyer(int x1, int y1, int x2, int y2, int x3, int y3) {
         cells = new Cell[DESTROYER_SIZE];
         cells[0] = new Cell(x1, y1, this);

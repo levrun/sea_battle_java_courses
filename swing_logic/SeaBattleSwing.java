@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 
+
 public class SeaBattleSwing extends JFrame {
 
     private SwingField playerField;

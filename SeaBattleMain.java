@@ -14,7 +14,8 @@ public class SeaBattleMain {
         final SeaBattle game = new SeaBattle();
 
         SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
+            
+	    public void run() {
                 SeaBattleSwing seaBattle = new SeaBattleSwing();
                 seaBattle.addMenuBar();
                 seaBattle.drawGameField(game.getPlayerField(), game.getComputerField());
